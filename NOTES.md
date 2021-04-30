@@ -19,26 +19,32 @@ A person who retired (somehow)
 As a person whoes 35 and has a million dollars, I am stupid and don't know how to invest, i would like to make a poll so random strangers can tell me how to invest
 
 As a creator can create a poll with multiple choices
-As a creator i want to be able to limit the amount of submission to my poll
+As a creator i want to be able to limit the amount of submission to my poll - NOT MVP
 As a creator, I want to share a Poll linked to my email.
 As a creator, i want to receive the submissions and the admin link - via email
 As a create. i want to see the results of my poll, 
-As a creator, I would like to know when the right amount of results have been received (email notification or txt notification)
+As a creator, I would like to know when the right amount of results have been received (email notification or txt notification) * NOT MVP
 AS a creator, each time a submission is received, i'd like a notification (which includes the administrative link and a link to the results)
 As a creator i would liek the results to be ranked using the Borda Count method: https://en.wikipedia.org/wiki/Borda_count because shut up thats why
 
 Make minumum as small as possible and choose which of these stories will dictate the MVP
 
-As a User, I want to see poll choices,
+As a User, I want to see poll choices, (as user i should receive a link to a poll)
 As a User, I would like to be able to add a choice to the poll (STRETCH, Would be nice) check requirements
 As a User, i would like to be able to choose and unique identifying name that will make people laugh or offend them
 As a User, I would like to be able to rank choices.
 As a user, I would like a know when the survey has been completed. (STRETCH)
 
 If everyone votes or creator gets impatient and closes or it is timeboxed and the end is reached.
-
+As a creator i would like to be able to time box my survey
+As a creator i would like to be able to cut off the survey early at my convience
+as a creator i would like the be 
 
 As a friend, i want to recieve a submission. 
+
+Survey
+Limit of 10
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
