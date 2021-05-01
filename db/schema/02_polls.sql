@@ -20,3 +20,10 @@ CREATE TABLE poll_choices (
     name TEXT, -- this is the name and descripter for this choice on the survey
     rating INTEGER DEFAULT 0 -- Please see Notes/data_outline.md for current deffinition
 )
+
+DROP TABLE IF EXISTS poll_unique_visits CASCADE;
+CREATE TABLE poll_unique_visits (
+    id SERIAL PRIMARY KEY NOT NULL, -- TODO MATT TODO MATT ___ CHECK USAGE
+    poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
+    cookie_id TEXT -- unique visits 
+)
