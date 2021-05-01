@@ -1,4 +1,18 @@
 ## FUNCTIONALITY:
+
+TOBE FORMATTED - with love from matt
+poll_unique_vists will be our table to track poll usage
+when a user visits a website, throw down a cookie with a unique id
+such as "hahaomgitsfridayandimindecisiveroflmaowtf"
+<!--  When a user goes to a poll, if they alread went, show them the pretty 
+NEED THIS MANY MORE VOTES or time.... and a unicorn farting rainbows (stretch)-->
+
+
+PRESENTATION THOUGHTS
+
+Watch some ted talks and apple announcements. Pick up the general vocal pattern and speach pace.
+Then throw in some unicorn thunder jam in there. I was thinking some jazz hands.
+
 1. Create a poll with multiple options
   - Each poll has title, description, and options
     - Each option has a title and description

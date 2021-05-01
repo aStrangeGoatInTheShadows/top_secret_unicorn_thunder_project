@@ -25,5 +25,6 @@ DROP TABLE IF EXISTS poll_unique_visits CASCADE;
 CREATE TABLE poll_unique_visits (
     id SERIAL PRIMARY KEY NOT NULL, -- TODO MATT TODO MATT ___ CHECK USAGE
     poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
-    cookie_id TEXT -- unique visits 
+    cookie_id TEXT, -- unique visits 
+    phone_number TEXT
 )
