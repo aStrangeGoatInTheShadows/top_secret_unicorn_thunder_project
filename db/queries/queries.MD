@@ -12,7 +12,13 @@ const user_votes = [
 INSERT INTO POLLS
 Alvin to generate URLS and pass to MATT
 const new_poll = {
-    
+    title: poll_title,
+    description: poll_description,
+    admin_link: admin_link,
+    survey_link: survey_link,
+    time_created: now(),
+    time_closed: NULL,
+    time_to_death: end_survey_time || NULL
 }
 
 <!-- User ask for poll -->
