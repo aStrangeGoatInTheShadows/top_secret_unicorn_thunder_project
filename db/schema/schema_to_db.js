@@ -1,4 +1,4 @@
-const db_client = require("../db.js");
+const { db_client } = require("../db.js");
 const fs = require("fs");
 
 let sql_file = "./db/schema/02_polls.sql";
