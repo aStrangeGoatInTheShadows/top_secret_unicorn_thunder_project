@@ -9,7 +9,6 @@ app.use(cookieSession({
 }));
 
 module.exports = (db) => {
-  /* redirects home and index to index */
   app.get("/index", (req, res) => {
     res.redirect("/");
   });
@@ -17,13 +16,16 @@ module.exports = (db) => {
     helpers.happyRedirect(res, req, "/");
   });
 
+  /*gets from to create a poll  */
   app.get("/create_poll", (req, res) => {
     const templateVars = {
-      message: "test",
     };
     helpers.happyRender(res, req, "create_poll", templateVars);
   });
 
+  /* gets all poll data from form, creates a new link, pushes poll to db, and redirects
+   to create poll options
+   */
   app.post("/create_poll", (req, res) => {
     const newLink = helpers.generateLink();
     const newPoll = {
@@ -47,6 +49,7 @@ module.exports = (db) => {
     helpers.happyRedirect(res, req, "create_poll_options");
   });
 
+  /* gets page to input poll options */
   app.get("/create_poll_options", (req, res) => {
     if (!req.session.numPolls) {
       req.session.numPolls = 2;
@@ -57,6 +60,7 @@ module.exports = (db) => {
     helpers.happyRender(res, req, "create_poll_options", templateVars);
   });
 
+  /* gets new poll options and inserts to db, redirects to poll created */
   app.post("/create_poll_options", (req, res) => {
     const pollOptions = [];
     for (const item in req.body) {
@@ -68,13 +72,14 @@ module.exports = (db) => {
     helpers.happyRedirect(res, req, "poll_created");
   });
 
+  /* display page telling poll is created and the admin/survey links */
   app.get("/poll_created", (req, res) => {
     const templateVars = {
       adminLink: req.session.adminLink,
       surveyLink: req.session.surveyLink,
     };
 
-    helpers.happyRender(res, req, "poll_created",templateVars);
+    helpers.happyRender(res, req, "poll_created", templateVars);
   });
   return app;
 };
