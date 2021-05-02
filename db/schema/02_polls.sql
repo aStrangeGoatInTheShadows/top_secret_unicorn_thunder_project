@@ -1,6 +1,6 @@
 -- Please see AND UPDATE Notes/data_outline.md if changes are made here,  Thank you
 
--- DROP TABLE IF EXISTS polls CASCADE;
+DROP TABLE IF EXISTS polls CASCADE;
 CREATE TABLE polls (
   id SERIAL PRIMARY KEY,
   creator_id INTEGER,
@@ -14,7 +14,7 @@ CREATE TABLE polls (
 );
 
 -- the choices available for all polls - ideally used linked to the poll we want
-DROP TABLE IF EXISTS poll_choices CASCADE;
+DROP TABLE IF EXISTS poll_choices;
 CREATE TABLE poll_choices (
     id SERIAL PRIMARY KEY NOT NULL,         -- TODO MATT TODO MATT __ CHECK PROPER USAGE
     poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
@@ -22,7 +22,7 @@ CREATE TABLE poll_choices (
     rating INTEGER DEFAULT 0 -- Please see Notes/data_outline.md for current deffinition
 );
 
--- DROP TABLE IF EXISTS poll_unique_visits CASCADE;
+DROP TABLE IF EXISTS poll_unique_visits;
 CREATE TABLE poll_unique_visits (
     id SERIAL PRIMARY KEY NOT NULL, -- TODO MATT TODO MATT ___ CHECK USAGE
     poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
