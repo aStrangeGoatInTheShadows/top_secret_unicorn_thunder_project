@@ -1,18 +1,21 @@
-const db_client = require('../db.js');
+const db_client = require("../db.js");
+const fs = require("fs");
+const { Client } = require("pg/lib");
 
-// @ https://stackoverflow.com/questions/19429193/promises-with-fs-and-bluebird
-// const Promise = require("bluebird");
-// const fs = Promise.promisifyAll(require("fs"));
-const fs = require('fs');
+let sql_file = "";
 
+// This will write the seeds file to our database
+//fs.readFile("./db/seeds/02_polls_seed.sql",'utf-8', function (err, data) {
+fs.readFile(
+    "./db/seeds/02_polls_seed.sql",
+    "utf-8",
+    function (err, data) {
+      if (data) {
+        sql_file = data;
+        db_client
+          .query(sql_file)
+          .then(()=>{});
+      }
+    }
+);
 
-
-
-fs.readFile("./db/seeds/02_polls.sql",'utf-8', function (err, data) {
-  if (data) {
-    console.log(data);
-    return db_client.query(data);
-  }
-
-  console.log('there was a problem', err);
-});
