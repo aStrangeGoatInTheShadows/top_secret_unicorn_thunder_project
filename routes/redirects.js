@@ -14,14 +14,14 @@ module.exports = (db) => {
     res.redirect("/");
   });
   app.get("/home", (req, res) => {
-    res.redirect("/");
+    helpers.happyRedirect(res, req, "/");
   });
 
   app.get("/create_poll", (req, res) => {
     const templateVars = {
       message: "test",
     };
-    res.render("create_poll", templateVars);
+    helpers.happyRender(res, req, "create_poll", templateVars);
   });
 
   app.post("/create_poll", (req, res) => {
@@ -30,25 +30,51 @@ module.exports = (db) => {
       creator_id: 1,
       title: req.body.poll_title,
       description: req.body.poll_descr,
-      admin_link: newLink + "/admin",
-      survey_link: newLink,
-      time_created: Date.now(),
-      // time_closed: NULL, //time of vote completion(using as bool) //stretch
-      // time_to_death: end_survey_time || NULL //countdown to poll //stretch
+      adminLink: newLink + "/admin",
+      surveyLink: newLink,
+      timeCreated: Date.now(),
+      timeClosed: null, //time of vote completion(using as bool) //stretch
+      timeToDeath: null //countdown to poll //stretch
     }
 
-    // dbFuncs.createPoll(newPoll)
-    req.session.poll_id = 1;
+    // req.session.poll_id = dbFuncs.createPoll(newPoll)
+    /* set cookies */
+    req.session.pollID = 1;
     req.session.numPolls = req.body.poll_num_of_options;
-    res.redirect("create_poll_options");
+    req.session.adminLink = newLink + "/admin";
+    req.session.surveyLink = newLink;
+
+    helpers.happyRedirect(res, req, "create_poll_options");
   });
 
   app.get("/create_poll_options", (req, res) => {
+    if (!req.session.numPolls) {
+      req.session.numPolls = 2;
+    }
     const templateVars = {
-      message: "test",
       numPolls: req.session.numPolls,
     };
-    res.render("create_poll_options", templateVars);
+    helpers.happyRender(res, req, "create_poll_options", templateVars);
+  });
+
+  app.post("/create_poll_options", (req, res) => {
+    const pollOptions = [];
+    for (const item in req.body) {
+      pollOptions.push(req.body[item]);
+    }
+
+    // insertPollOptions(pollOptions, req.session.poll_id);
+
+    helpers.happyRedirect(res, req, "poll_created");
+  });
+
+  app.get("/poll_created", (req, res) => {
+    const templateVars = {
+      adminLink: req.session.adminLink,
+      surveyLink: req.session.surveyLink,
+    };
+
+    helpers.happyRender(res, req, "poll_created",templateVars);
   });
   return app;
 };
