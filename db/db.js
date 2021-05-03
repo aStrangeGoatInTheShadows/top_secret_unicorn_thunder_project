@@ -43,7 +43,8 @@ const makePutQuery = function (table, properties, queryParams, return_id) {
 
   console.log('LENGTH OF queryParams',queryParams.length)
 
-  if(true) {
+  // @https://stackoverflow.com/questions/31104879/how-to-check-if-array-is-multidimensional-jquery/42317865
+  if(!(queryParams[0].constructor === Array)) {
     queryParams = [queryParams];
   }
 

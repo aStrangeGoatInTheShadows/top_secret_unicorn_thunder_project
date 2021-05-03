@@ -45,7 +45,10 @@ getPollOptions(pollID)
    pollID: 1
    @return: none
 */
-insertPollOptions(pollOptions,pollID)
+insertPollOptions(pollOptions,pollID) // IMPLEMENTED ///////////////////////////////////////////////////////////////////////////
+// AS const putAllPollChoices = function (choice_names, poll_id) 
+// choice_names is an array of strings
+// poll_id is integer database id for poll
 
 /**takes a pollID and returns array of pollOptions and ratings
    @params: pollID: 1

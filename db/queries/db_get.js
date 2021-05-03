@@ -71,3 +71,9 @@ const getPollChoices = function (poll_id) {
     .query(queryString, [poll_id])
     .then((res) => res.rows);
 }
+
+/**takes a pollID and returns array of pollOptions and ratings
+   @params: pollID: 1
+   @return: [{option1:10},{option2:20},{option3:145}]
+*/
+getPollRatings(pollID)

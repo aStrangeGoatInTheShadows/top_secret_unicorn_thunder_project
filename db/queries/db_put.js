@@ -42,7 +42,7 @@ const sendPollToDatabase = function (poll) {
   return db_client.query(queryString, queryParams);
 };
 
-//(1,'should i quit my job', 'where we should go', 'www.lifehouselab.ca', 'a fake link', CURRENT_TIMESTAMP , null)
+// (1,'should i quit my job', 'where we should go', 'www.lifehouselab.ca', 'a fake link', CURRENT_TIMESTAMP , null)
 // sendPollToDatabase(some_poll)
 // .then(res => console.log(res.rows)) 
 // .then(()=>{db_client.end()});
@@ -100,15 +100,15 @@ const putAllPollChoices = function (choice_names, poll_id) {
   });
 };
 
-choice_names = [
-  "feet",
-  "leg",
-  "ass",
-  "grass",
-  "gas",
-  "french onion",
-  "worse survey ever",
-];
-putAllPollChoices(choice_names, 2);
+// choice_names = [
+//   "feet",
+//   "leg",
+//   "ass",
+//   "grass",
+//   "gas",
+//   "french onion",
+//   "worse survey ever",
+// ];
+// putAllPollChoices(choice_names, 2);
 
 exports.put_new_poll = put_new_poll;
