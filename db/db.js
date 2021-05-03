@@ -6,8 +6,7 @@ const Client = pg.Client;
 // NO PASSWORDS OR PORTS OR USER
 const db_client = new Client(process.env.DATABASE_URL);
 
-db_client.connect()
-  .then(()=>console.log('Connected to database'));
+db_client.connect().then(() => console.log("Connected to database"));
 
 // Creates an formats a query string for PSQL based on what its passed
 const makeGetQuery = function (selection, table, where) {
@@ -15,9 +14,9 @@ const makeGetQuery = function (selection, table, where) {
   FROM ${table}
   `;
 
-  if(where) {
+  if (where) {
     queryString += `WHERE ${where}
-    `
+    `;
   }
 
   return queryString;
@@ -27,43 +26,60 @@ const makeGetQuery = function (selection, table, where) {
    @params: table, properties (array of what to change)
    @return: queryString
 */
-const makePutQuery = function (table, properties) {
+const makePutQuery = function (table, properties, queryParams, return_id) {
   let queryString = `INSERT INTO ${table} (`;
-  
+
   // adds $n as index for properties
-  for(const property of properties) {
-    if(properties.indexOf(property) > 0){
-      queryString += ',';
+  for (const property of properties) {
+    if (properties.indexOf(property) > 0) {
+      queryString += ",";
     }
     queryString += `${property}`;
   }
-  queryString += `) VALUES (`;
-  
-  for(const index in properties) {
-    if(index > 0){
-      queryString += ',';
-    }    
-    queryString += `$${parseInt(index) + 1}`;
-  }
-  queryString += `) RETURNING id`;
+  queryString += `) VALUES`;
 
+  // This tracks the iteration across loops
+  let true_index = 1;
+
+  // takes in nested properties and builds out the $n alias' section of query
+  for (let n in queryParams)
+  {
+    queryString += `(`;
+
+    for (const index in properties) {
+      if (index > 0) {
+        queryString += ",";
+      }
+      queryString += `$${true_index}`;
+      true_index++;
+    }
+    queryString += ")";
+    if(n < queryParams.length - 1) {
+      queryString += ",";
+    }
+        
+  }
+  
+  // if the requester wants the ids back for the new insertions
+  if (return_id) {
+    queryString += "RETURNING id";
+  }
   return queryString;
 };
 
 const getQueryParams = function (table_obj) {
   let queryParams = [];
 
-  for (const key in table_obj){
+  for (const key in table_obj) {
     queryParams.push(key);
   }
 
   return queryParams;
-}
-
+};
 
 module.exports = {
   db_client,
   makeGetQuery,
   makePutQuery,
-  getQueryParams
-}
+  getQueryParams,
+};
