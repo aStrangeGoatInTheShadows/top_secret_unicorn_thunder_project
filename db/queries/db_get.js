@@ -95,3 +95,7 @@ const getPollRatings = function (poll_id) {
 // };
 
 // getPollRatings(8);
+
+module.exports = {
+  getPollRatings
+};
