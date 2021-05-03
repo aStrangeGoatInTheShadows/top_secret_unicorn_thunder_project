@@ -1,8 +1,9 @@
 -- Please see AND UPDATE Notes/data_outline.md if changes are made here,  Thank you
 
-DROP TABLE IF EXISTS polls CASCADE;
+-- DROP TABLE IF EXISTS polls CASCADE;
 CREATE TABLE polls (
-  id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY,
+  creator_id INTEGER,
   title TEXT,
   description TEXT,
   admin_link VARCHAR(255) NOT NULL, -- access for admin privelages 
@@ -19,12 +20,12 @@ CREATE TABLE poll_choices (
     poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
     name TEXT, -- this is the name and descripter for this choice on the survey
     rating INTEGER DEFAULT 0 -- Please see Notes/data_outline.md for current deffinition
-)
+);
 
-DROP TABLE IF EXISTS poll_unique_visits CASCADE;
+-- DROP TABLE IF EXISTS poll_unique_visits CASCADE;
 CREATE TABLE poll_unique_visits (
     id SERIAL PRIMARY KEY NOT NULL, -- TODO MATT TODO MATT ___ CHECK USAGE
     poll_id INTEGER REFERENCES polls(id), -- ON DELETE CASCADE,
     cookie_id TEXT, -- unique visits 
     phone_number TEXT
-)
+);
