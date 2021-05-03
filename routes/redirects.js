@@ -86,8 +86,22 @@ module.exports = (db) => {
 
   /* Allows user to edit options should discuss whether we want this later.*/
   app.get("/poll/:id/admin/", (req, res) => {
-    const adminLink = `http://localhost:8080/poll/${req.params.id}`;
+    const adminLink = `http://localhost:8080/poll/${req.params.id}/admin`;
     // const pollID = dbFuncs.getPollId(adminLink);
+    // const pollOptions = dbFuncs.getPollOptions(id);
+    pollOptions = ["option1", "option2"]
+    const templateVars = {
+      options: pollOptions,
+      numPolls: pollOptions.length
+    };
+
+    helpers.happyRender(res, req, "create_poll_options", templateVars);
+  });
+
+  /* Allows user to edit options should discuss whether we want this later.*/
+  app.get("/poll/:id/", (req, res) => {
+    const surveyLink = `http://localhost:8080/poll/${req.params.id}`;
+    // const pollID = dbFuncs.getPollId(surveyLink);
     // const pollOptions = dbFuncs.getPollOptions(id);
     pollOptions = ["option1", "option2"]
     const templateVars = {
