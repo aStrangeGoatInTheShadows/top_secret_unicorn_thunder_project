@@ -35,10 +35,17 @@ const sendPollToDatabase = function (poll) {
     "time_closed",
     "time_to_death",
   ];
-  let queryString = makePutQuery("polls", properties);
+  let queryString = makePutQuery("polls", properties, queryParams, true);
+
+  console.log('sendPollToDatabase query', queryString, queryParams);
 
   return db_client.query(queryString, queryParams);
 };
+
+//(1,'should i quit my job', 'where we should go', 'www.lifehouselab.ca', 'a fake link', CURRENT_TIMESTAMP , null)
+// sendPollToDatabase(some_poll)
+// .then(res => console.log(res.rows)) 
+// .then(()=>{db_client.end()});
 
 // //////////////////////////////// WORKING ABOVE TEST makePutQuery //////////////////
 

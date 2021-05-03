@@ -41,9 +41,14 @@ const makePutQuery = function (table, properties, queryParams, return_id) {
   // This tracks the iteration across loops
   let true_index = 1;
 
+  console.log('LENGTH OF queryParams',queryParams.length)
+
+  if(true) {
+    queryParams = [queryParams];
+  }
+
   // takes in nested properties and builds out the $n alias' section of query
-  for (let n in queryParams)
-  {
+  for (let n in queryParams) {
     queryString += `(`;
 
     for (const index in properties) {
@@ -54,12 +59,11 @@ const makePutQuery = function (table, properties, queryParams, return_id) {
       true_index++;
     }
     queryString += ")";
-    if(n < queryParams.length - 1) {
+    if (n < queryParams.length - 1) {
       queryString += ",";
     }
-        
   }
-  
+
   // if the requester wants the ids back for the new insertions
   if (return_id) {
     queryString += "RETURNING id";
