@@ -100,6 +100,16 @@ const putAllPollChoices = function (choice_names, poll_id) {
   });
 };
 
+// 
+// @Alvin - are these the notes for a different function?
+/**takes a pollID and returns array of pollOptions and ratings
+   @params:pollRatings:[{option1:10},{option2:20},{option3:145}], pollID: 1
+   @return: true/false for inserted or not
+*/
+const putPollRatings = function (pollRatings) {
+
+}
+
 // choice_names = [
 //   "feet",
 //   "leg",

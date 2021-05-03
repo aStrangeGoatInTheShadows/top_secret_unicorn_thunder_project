@@ -54,7 +54,10 @@ insertPollOptions(pollOptions,pollID) // IMPLEMENTED ///////////////////////////
    @params: pollID: 1
    @return: [{option1:10},{option2:20},{option3:145}]
 */
-getPollRatings(pollID)
+getPollRatings(pollID) // IMPLEMENTED /////////////////////////////////////////////////////
+// const getPollRatings = function (poll_id) { in db_get.js
+// poll_id is self described
+// returns an array with table entries for all options of a poll
 
 /**takes a pollID and returns array of pollOptions and ratings
    @params:pollRatings:[{option1:10},{option2:20},{option3:145}], pollID: 1
