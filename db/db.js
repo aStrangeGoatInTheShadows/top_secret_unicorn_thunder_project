@@ -41,12 +41,17 @@ const makePutQuery = function (table, properties, queryParams, return_id) {
   // This tracks the iteration across loops
   let true_index = 1;
 
-  console.log('LENGTH OF queryParams',queryParams.length)
+  // console.log('LENGTH OF queryParams',queryParams.length)
+  // console.log(queryParams);
 
   // @https://stackoverflow.com/questions/31104879/how-to-check-if-array-is-multidimensional-jquery/42317865
-  if(!(queryParams[0].constructor === Array)) {
-    queryParams = [queryParams];
-  }
+  // if(!(queryParams[0].constructor === Array)) {
+  //   queryParams = [queryParams];
+  // } 
+
+
+  queryParams = queryParams.flat();
+  // console.log(queryParams);
 
   // takes in nested properties and builds out the $n alias' section of query
   for (let n in queryParams) {
