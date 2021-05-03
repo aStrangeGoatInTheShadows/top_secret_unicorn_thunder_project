@@ -1,7 +1,8 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
 const helpers = require('../lib/helpers');
-// const dbFuncs = require('../lib/db');
+// const dbFuncs = require('../db/queries/dbFuncs')
+
 
 const app = express();
 app.use(cookieSession({
@@ -56,6 +57,7 @@ module.exports = (db) => {
     }
     const templateVars = {
       numPolls: req.session.numPolls,
+      options: [req.session.numPolls],
     };
     helpers.happyRender(res, req, "create_poll_options", templateVars);
   });
@@ -81,5 +83,21 @@ module.exports = (db) => {
 
     helpers.happyRender(res, req, "poll_created", templateVars);
   });
+
+  /* Allows user to edit options should discuss whether we want this later.*/
+  app.get("/poll/:id/admin/", (req, res) => {
+    const adminLink = `http://localhost:8080/poll/${req.params.id}`;
+    // const pollID = dbFuncs.getPollId(adminLink);
+    // const pollOptions = dbFuncs.getPollOptions(id);
+    pollOptions = ["option1", "option2"]
+    const templateVars = {
+      options: pollOptions,
+      numPolls: pollOptions.length
+    };
+
+    helpers.happyRender(res, req, "create_poll_options", templateVars);
+  });
+
   return app;
 };
+
