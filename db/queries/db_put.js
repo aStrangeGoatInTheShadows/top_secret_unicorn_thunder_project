@@ -100,15 +100,15 @@ const putAllPollChoices = function (choice_names, poll_id) {
   });
 };
 
-// choice_names = [
-//   "feet",
-//   "leg",
-//   "ass",
-//   "grass",
-//   "gas",
-//   "french onion",
-//   "worse survey ever",
-// ];
-// putAllPollChoices(choice_names, 2);
+choice_names = [
+  "feet",
+  "leg",
+  "ass",
+  "grass",
+  "gas",
+  "french onion",
+  "worse survey ever",
+];
+putAllPollChoices(choice_names, 2);
 
 exports.put_new_poll = put_new_poll;
