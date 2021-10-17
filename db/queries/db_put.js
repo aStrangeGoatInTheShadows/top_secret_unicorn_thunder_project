@@ -37,18 +37,17 @@ const sendPollToDatabase = function (poll) {
   ];
   let queryString = makePutQuery("polls", properties, queryParams, true);
 
-  console.log('sendPollToDatabase query', queryString, queryParams);
+  console.log("sendPollToDatabase query", queryString, queryParams);
 
   return db_client.query(queryString, queryParams);
 };
 
 // (1,'should i quit my job', 'where we should go', 'www.lifehouselab.ca', 'a fake link', CURRENT_TIMESTAMP , null)
 // sendPollToDatabase(some_poll)
-// .then(res => console.log(res.rows)) 
+// .then(res => console.log(res.rows))
 // .then(()=>{db_client.end()});
 
 // //////////////////////////////// WORKING ABOVE TEST makePutQuery //////////////////
-
 
 /**
  * put_new_poll
@@ -61,12 +60,7 @@ const put_new_poll = function (some_poll) {
       console.log("added new poll to db with id:", res.rows[0].id);
       return res.rows[0].id;
     })
-    .catch((err) =>
-      console.log(
-        "HOLY FUCK WHAT THE HELL HAPPENED with creating a new pole",
-        err
-      )
-    );
+    .catch((err) => console.log("failed to send poll to database", err));
 };
 
 /**takes in array of strings TO BE THE OPTION NAMES and the poll_id to add to
@@ -95,30 +89,17 @@ const putAllPollChoices = function (choice_names, poll_id) {
 
   console.log(queryString);
   return db_client.query(queryString, queryParams).then((res) => {
-    if(res.rows[1])
-    console.log("Put all choices returned these id slots", res.rows);
+    if (res.rows[1])
+      console.log("Put all choices returned these id slots", res.rows);
   });
 };
 
-// 
+//
 // @Alvin - are these the notes for a different function?
 /**takes a pollID and returns array of pollOptions and ratings
    @params:pollRatings:[{option1:10},{option2:20},{option3:145}], pollID: 1
    @return: true/false for inserted or not
 */
-const putPollRatings = function (pollRatings) {
-
-}
-
-// choice_names = [
-//   "feet",
-//   "leg",
-//   "ass",
-//   "grass",
-//   "gas",
-//   "french onion",
-//   "worse survey ever",
-// ];
-// putAllPollChoices(choice_names, 2);
+const putPollRatings = function (pollRatings) {};
 
 exports.put_new_poll = put_new_poll;
